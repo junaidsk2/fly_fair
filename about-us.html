@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <title></title>
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <!--<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">-->
+    <!--<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">-->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <!-- <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png"> -->
+    <meta name="theme-color" content="#ffffff">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+    <link href="assets/css/theme.css" rel="stylesheet" />
+ <style>
+  
+  /* .container{
+    margin-top: 90px;
+  } */
+  .responsive-container-block.bigContainer {
+    padding-top: 60px !important;
+  }
+ 
+   .modal-window{
+  /* position: fixed; */
+  /* background-color: rgba(0, 0, 0,0.9 ); */
+  /* top: 0;
+  right: 0;
+  bottom: 0; */
+  left: 0;
+  z-index: 999;
+  /* visibility: hidden; */
+  /* opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s; */
+}
+#open-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      /* background-color: #f1f1f1; */
+      /* border: 1px solid #888; */
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+.single-box {
+      flex-direction: column;
+      width: 370px;
+      color: #001346;
+      background-color: #fff;
+      align-self: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+      cursor: pointer;
+      border-radius: 10px;
+      margin: 10px 0;
+      z-index: 1;
+      height: 450px;
+    }
+
+    .header-area.img1 {
+      background-image: url(assets/img/gallery/Combating-jetlag-is-a-major-downside-of-long-haul-flights.-.jpg);
+    }
+
+    .header-area {
+      border-radius: 10px 10px 50% 50%;
+      padding: 120px 30px;
+      position: relative;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .body-area {
+      padding: 10px 30px;
+      text-align: center;
+    }
+
+    .body-area h3 {
+      font-size: 25px;
+      margin: 20px 0 0;
+    }
+
+    .body-area h4 {
+      color: #F1A501;
+      font-size: 18px;
+      margin: 5px 0;
+    }
+
+    .body-area p i {
+      padding-right: 20px;
+    }
+
+    /* modal css */
+
+    #modal-button {
+      background: #F1A501;
+      border: none;
+      color: #fff;
+      padding: 10px 30px;
+      font-size: 16px;
+    }
+
+    #modal-container {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.7);
+      height: 100%;
+      width: 100%;
+    }
+
+    #modal-section {
+      position: relative;
+      background-color: #f7f7f7;
+      width: 40%;
+      margin: 7% auto;
+      padding: 40px;
+      border-radius: 15px;
+      animation: animate .5s ease-in;
+    }
+
+    @keyframes animate {
+      from {
+        top: -300px;
+        opacity: 0;
+      }
+      to {
+        top: 0;
+        opacity: 1;
+      }
+    }
+
+    #modal-close-button {
+      float: right;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    #modal-title {
+      text-align: center;
+    }
+    #main{
+      width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    /* background: white; */
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9); /* Black overlay with 70% opacity */
+      z-index: 1; /* Place the overlay below the modal */
+    }
+
+ @media (max-width: 425px) {
+    #main {
+     left:44%;
+    }
+  }
+    @media (max-width: 430px) {
+    #main {
+     left:45%;
+    }
+  }
+ </style>
+  </head>
+<body onload="openModal()">
+    
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-5 d-block backdrop padding-transition" data-navbar-on-scroll="data-navbar-on-scroll" style="background-image: none; background-color: rgba(249, 250, 253, 0.094);">
+        <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/FLY_FARE.png" height="34" alt="logo"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#destination">About Us</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="blog.html">Blog</a>
+              </li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="contact.html">Contact</a></li>
+              <!-- <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#!">Login</a></li>
+                <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="#!">Sign Up</a></li>
+                <li class="nav-item dropdown px-3 px-lg-0"> <a class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">EN</a>
+                  <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">EN</a></li>
+                    <li><a class="dropdown-item" href="#!">BN</a></li>
+                  </ul>
+                </li> -->
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="responsive-container-block bigContainer">
+            <div class="responsive-container-block Container">
+              <img class="mainImg" src="assets/img/gallery/Combating-jetlag-is-a-major-downside-of-long-haul-flights.-.jpg">
+              <div class="allText aboveText">
+                <p class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">
+                    About Us
+                </p>
+                <p class="fw-medium">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+                <p class="text-blk description">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum pulvinar ullamcorper suspendisse ac eget. Pellentesque tempus leo in ullamcorper quis vestibulum ligula elementum ut.
+                </p>
+                
+                <a class="btn btn-primary btn-lg me-md-4 mb-3 mb-md-0 border-0 primary-btn-shadow" onclick="openModal()" role="button">Explore</a>
+              </div>
+            </div>
+            
+          </div>
+      </div>
+      <section class="pb-0 pb-lg-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0"> <img class="mb-4" src="assets/img/FLY_FARE.png" width="150" alt="jadoo">
+              <p class="fs--1 text-secondary mb-0 fw-medium">Lock air fare is the best Third Party Flight Booking website,
+              </p>
+            </div>
+            <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0">
+              <h4 class="footer-heading-color fw-bold font-sans-serif mb-3 mb-lg-4">About</h4>
+              <ul class="list-unstyled mb-0">
+                <!-- <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none">About</a></li> -->
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none">Call now</a></li>
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="tel: +1-866-217-4768">+1-866-217-4768</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0">
+              <h4 class="footer-heading-color fw-bold font-sans-serif mb-3 mb-lg-4">Links</h4>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Disclaimer</a></li>
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Privacy Policy</a></li>
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">About Us</a></li>
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Terms &amp; Conditions</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0">
+              <h4 class="footer-heading-color fw-bold font-sans-serif mb-3 mb-lg-4">Best Deal</h4>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Fly to Your Dreams with
+                    Third Party Flight Booking!</a></li>
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Elevate Your Travel
+                    Experience with Third Party Flight Booking!</a></li>
+                <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Low fare tips</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-md-5 col-12 mb-4 mb-md-6 mb-lg-0 order-lg-4 order-md-1">
+              <!-- <div class="icon-group mb-4"> <a class="text-decoration-none icon-item shadow-social" id="facebook" href="#!"><i class="fab fa-facebook-f"> </i></a><a class="text-decoration-none icon-item shadow-social" id="instagram" href="#!"><i class="fab fa-instagram"> </i></a><a class="text-decoration-none icon-item shadow-social" id="twitter" href="#!"><i class="fab fa-twitter"> </i></a></div> -->
+              <!-- <h4 class="fw-medium font-sans-serif text-secondary mb-3">Discover our app</h4>
+                <div class="d-flex align-items-center"> <a href="#!"> <img class="me-2" src="assets/img/play-store.png" alt="play store" /></a><a href="#!"> <img src="assets/img/apple-store.png" alt="apple store" /></a></div> -->
+            </div>
+          </div>
+        </div><!-- end of .container-->
+  
+      </section>
+      <!-- Modal -->
+<!-- <div > -->
+
+  <main class="main" id="top">
+    <!-- Modal -->
+<div class="overlay" id="overlay"></div>
+
+<div id="open-modal" class="modal-window">
+  
+    <main id="main">
+      <!-- Add close button here -->
+      <button type="button" class="btn-close" aria-label="Close"></button>
+
+      <div class="single-box">
+        <div class="header-area img1">
+          <!-- Add close button here -->
+          <button id="close-modal-button" onclick="closeModal()" class="btn-close">×</button>
+        </div>
+        <div class="body-area">
+          <h3>+1-866-217-4768</h3>
+          <h4>Contact For Booking</h4>
+          <!-- <p class="socials">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-pinterest"></i>
+            <i class="fa fa-linkedin"></i>
+          </p> -->
+          <button style="margin-top: 20px;" id="modal-button" onclick="callNow()">Call Now</button>
+        </div>
+      </div>
+
+    </main>
+
+</div>
+<!-- end here -->
+      <div class="py-5 text-center">
+      
+        <p class="mb-0 text-secondary fs--1 fw-medium txt1">All rights<span class="txt2"> <a href="https://flyfare.us/index.html">flyfare.us</a></span></p><div class="bar"></div><p></p>
+        
+          <!-- <span>www.codepen.io/</span> -->
+        </div>
+        <div class="icon-group mb-4" style="justify-content: center; display: flex; text-align: center; margin-top: 10px;"> <a class="text-decoration-none icon-item shadow-social" id="facebook" href="#!"><svg class="svg-inline--fa fa-facebook-f fa-w-10" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg><!-- <i class="fab fa-facebook-f">
+        </i> Font Awesome fontawesome.com --></a><a class="text-decoration-none icon-item shadow-social" id="instagram" href="#!"><svg class="svg-inline--fa fa-instagram fa-w-14" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg><!-- <i class="fab fa-instagram"> </i> Font Awesome fontawesome.com --></a><a class="text-decoration-none icon-item shadow-social" id="twitter" href="#!"><svg class="svg-inline--fa fa-twitter fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter"> </i> Font Awesome fontawesome.com --></a></div>
+
+    <script src="vendors/@popperjs/popper.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="vendors/is/is.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="vendors/fontawesome/all.min.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script>
+    // Function to open the modal
+    function openModal() {
+      var modal = document.getElementById('open-modal');
+      var overlay = document.getElementById('overlay');
+      modal.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+  
+    // Function to close the modal
+    function closeModal() {
+      var modal = document.getElementById('open-modal');
+      var overlay = document.getElementById('overlay');
+      modal.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+    function callNow() {
+    // Replace '123456789' with your actual phone number
+    window.location.href = 'tel:+1-866-217-4768';
+  }
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Volkhov:wght@700&amp;display=swap"
+    rel="stylesheet">
+</body>
+</html>

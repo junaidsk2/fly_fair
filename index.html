@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Fly Fare</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+  <!--<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">-->
+  <!--<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">-->
+  <!--<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">-->
+  <link rel="manifest" href="assets/img/favicons/manifest.json">
+  <!-- <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png"> -->
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link href="assets/css/theme.css" rel="stylesheet" />
+<style>
+ 
+.cloud {
+  position: absolute;
+  top: 110px;
+  right: 100px;
+  opacity: .8;
+   animation: cloud 10s linear 0s infinite reverse;
+  z-index: 10;
+
+}
+/* @keyframes light {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+} */
+@keyframes cloud {
+  from {right:-110px;
+    top: 100px;
+    
+  }
+  to {right: 40%;
+  top:40%;
+  }
+  
+}
+.modal-window{
+  /* position: fixed; */
+  /* background-color: rgba(0, 0, 0,0.9 ); */
+  /* top: 0;
+  right: 0;
+  bottom: 0; */
+  left: 0;
+  z-index: 999;
+  /* visibility: hidden; */
+  /* opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s; */
+}
+.modal-window {
+ 
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    /* background: white; */
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+
+
+
+#open-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      /* background-color: #f1f1f1; */
+      /* border: 1px solid #888; */
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+.single-box {
+      flex-direction: column;
+      width: 370px;
+      color: #001346;
+      background-color: #fff;
+      align-self: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+      cursor: pointer;
+      border-radius: 10px;
+      margin: 10px 0;
+      z-index: 1;
+      height: 450px;
+    }
+
+    .header-area.img1 {
+      background-image: url(assets/img/gallery/Combating-jetlag-is-a-major-downside-of-long-haul-flights.-.jpg);
+    }
+
+    .header-area {
+      border-radius: 10px 10px 50% 50%;
+      padding: 120px 30px;
+      position: relative;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .body-area {
+      padding: 10px 30px;
+      text-align: center;
+    }
+
+    .body-area h3 {
+      font-size: 25px;
+      margin: 20px 0 0;
+    }
+
+    .body-area h4 {
+      color: #F1A501;
+      font-size: 18px;
+      margin: 5px 0;
+    }
+
+    .body-area p i {
+      padding-right: 20px;
+    }
+
+    /* modal css */
+
+    #modal-button {
+      background: #F1A501;
+      border: none;
+      color: #fff;
+      padding: 10px 30px;
+      font-size: 16px;
+    }
+
+    #modal-container {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.7);
+      height: 100%;
+      width: 100%;
+    }
+
+    #modal-section {
+      position: relative;
+      background-color: #f7f7f7;
+      width: 40%;
+      margin: 7% auto;
+      padding: 40px;
+      border-radius: 15px;
+      animation: animate .5s ease-in;
+    }
+
+    @keyframes animate {
+      from {
+        top: -300px;
+        opacity: 0;
+      }
+      to {
+        top: 0;
+        opacity: 1;
+      }
+    }
+
+    #modal-close-button {
+      float: right;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    #modal-title {
+      text-align: center;
+    }
+    #main{
+      width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    /* background: white; */
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9); /* Black overlay with 70% opacity */
+      z-index: 1; /* Place the overlay below the modal */
+    }
+    
+    @media (max-width: 425px) {
+    #main {
+     left:44%;
+    }
+  }
+    @media (max-width: 430px) {
+    #main {
+     left:45%;
+    }
+  }
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11427825644"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11427825644');
+</script>
+
+
+</head>
+
+
+<body onload="openModal()">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-5 d-block"
+      data-navbar-on-scroll="data-navbar-on-scroll">
+      <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/FLY_FARE.png"
+            height="34" alt="logo" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"> </span></button>
+        <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
+            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#service">Home</a>
+            </li>
+            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page"
+                href="about-us.html">About Us</a></li>
+            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page"
+                href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section style="padding-top: 7rem;">
+      <div class="bg-holder" style="background-image:url(assets/img/hero/hero-bg.svg);">
+        <!-- <div class="tenor-gif-embed" data-postid="17542154" data-share-method="host" data-aspect-ratio="1" data-width="5%"><a href="https://tenor.com/view/airplane-joypixels-flying-aeroplane-aircraft-gif-17542154">Airplane Joypixels Sticker</a>from <a href="https://tenor.com/search/airplane-stickers"></a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
+
+        <div class="cloud cloud1">
+          <!-- <div class="light"></div> -->
+          
+        <img  src="https://images.vexels.com/media/users/3/145795/isolated/preview/05cd33059a006bf49006097af4ccba98-plane-in-flight-by-vexels.png" width="130px" style="margin-bottom: 20px;"/></div>
+      </div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-5 col-lg-6 order-0 order-md-1 text-end"><img class="pt-7 pt-md-0 hero-img"
+              src="assets/img/hero/hero-img.png" alt="hero-header" />
+            </div>
+          <div class="col-md-7 col-lg-6 text-md-start text-center py-6">
+            <h4 class="fw-bold text-danger mb-3">Best Destinations around the world</h4>
+            <h1 class="hero-title">Tour your dream destination with Tourdaily</h1>
+            <div class="text-center text-md-start"> <a
+                class="btn btn-primary btn-lg me-md-4 mb-3 mb-md-0 border-0 primary-btn-shadow" onclick="openModal()"
+                role="button">Plan a Tripe</a>
+              <div class="w-100 d-block d-md-none"></div>
+              
+              <div class="modal fade" id="popupVideo" tabindex="-1" aria-labelledby="popupVideo" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <iframe class="rounded" style="width:100%;max-height:500px;" height="500px"
+                      src="https://www.youtube.com/embed/_lhdhL4UDIo" title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen="allowfullscreen"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- Modal -->
+<!-- <div > -->
+
+  <main class="main" id="top">
+    <!-- Modal -->
+<div class="overlay" id="overlay"></div>
+
+<div id="open-modal" class="modal-window">
+  
+    <main id="main">
+      <!-- Add close button here -->
+      <button type="button" class="btn-close" aria-label="Close"></button>
+
+      <div class="single-box">
+        <div class="header-area img1">
+          <!-- Add close button here -->
+          <button id="close-modal-button" onclick="closeModal()" class="btn-close">×</button>
+        </div>
+        <div class="body-area">
+          <h3>+1-866-217-4768</h3>
+          <h4>Contact For Booking</h4>
+          <button style="margin-top: 20px;" id="modal-button" onclick="callNow()">Call Now</button>
+        </div>
+      </div>
+
+    </main>
+</div>
+    
+    <section class="pt-5" id="destination">
+
+      <div class="container">
+        <div class="position-absolute start-100 bottom-0 translate-middle-x d-none d-xl-block ms-xl-n4"><img
+            src="assets/img/dest/shape.svg" alt="destination" /></div>
+        <div class="mb-7 text-center">
+          <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Our Popular Tours</h3>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card overflow-hidden shadow"> <img class="card-img-top"
+                src="assets/img/dest/6b59e753-group-69.png" alt="Furka Pass, Obergoms" />
+              <div class="card-body py-4 px-3">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                  <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link"
+                      href="#!">Furka Pass, Obergoms</a></h4>
+                  <!-- <span class="fs-1 fw-medium">$5,42k</span> -->
+                </div>
+                <div class="d-flex align-items-center">
+                  <!-- <img src="assets/img/dest/navigation.svg" style="margin-right: 14px" width="20" alt="navigation" /> -->
+                  <i class="fa-solid fa-location-dot" style="margin-right: 14px" width="20"></i>
+                  <span class="fs-0 fw-medium">Switzerland</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card overflow-hidden shadow"> <img class="card-img-top"
+                src="assets/img/dest/c96423ca-group-70.png" alt="London, UK" />
+              <div class="card-body py-4 px-3">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                  <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link"
+                      href="#!">Rialto Bridge, Venezia</a></h4>
+                  <!-- <span class="fs-1 fw-medium">$4.2k</span> -->
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-location-dot" style="margin-right: 14px" width="20"></i>
+                  <span class="fs-0 fw-medium">Italy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card overflow-hidden shadow"> <img class="card-img-top"
+                src="assets/img/dest/fa028b00-group-71.png" alt="London, UK" />
+              <div class="card-body py-4 px-3">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                  <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link"
+                      href="#!">Nufenenpass, Obergoms VS
+                    </a></h4>
+                  <!-- <span class="fs-1 fw-medium">$4.2k</span> -->
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-location-dot" style="margin-right: 14px" width="20"></i>
+                  <span class="fs-0 fw-medium">Switzerland</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card overflow-hidden shadow"> <img class="card-img-top"
+                src="assets/img/dest/14f5d25e-group-72.png" alt="Full Europe" />
+              <div class="card-body py-4 px-3">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                  <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link"
+                       href="#!">Cinque Terre, Riomaggiore</a></h4>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-location-dot" style="margin-right: 14px" width="20"></i>
+                  <span class="fs-0 fw-medium">Italy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card overflow-hidden shadow"> <img class="card-img-top"
+                src="assets/img/dest/6b59e753-group-69.png" alt="Full Europe" />
+              <div class="card-body py-4 px-3">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                  <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link"
+                      href="#!">Cinque Terre, Riomaggiore</a></h4>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-location-dot" style="margin-right: 14px" width="20"></i>
+                  <span class="fs-0 fw-medium">Italy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card overflow-hidden shadow"> <img class="card-img-top"
+                src="assets/img/dest/c96423ca-group-70.png" alt="Full Europe" />
+              <div class="card-body py-4 px-3">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                  <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link"
+                      href="#!">Cinque Terre, Riomaggiore</a></h4>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-location-dot" style="margin-right: 14px" width="20"></i>
+                  <span class="fs-0 fw-medium">Italy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    <section id="booking">
+
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="mb-4 text-start">
+              <!-- <h5 class="text-secondary">Easy and Fast </h5> -->
+              <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Why Choose us</h3>
+            </div>
+            <div class="d-flex align-items-start mb-5">
+              <div class="bg-primary me-sm-4 me-3 p-3" style="border-radius: 13px"> <img
+                  src="assets/img" width="22"  /></div>
+              <div class="flex-1">
+                <h5 class="text-secondary fw-bold fs-0">Unique destination</h5>
+                <p>Third-party flight booking enables adventurers to uncover and access unique destinations not often
+                  featured on mainstream travel websites. These platforms offer a gateway to unexplored places,
+                  facilitating seamless and convenient booking experiences. Discovering and embarking on extraordinary
+                  journeys to offbeat and captivating locations has never been easier</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start mb-5">
+              <div class="bg-danger me-sm-4 me-3 p-3" style="border-radius: 13px"> <img
+                  src="assets/img/steps/water-sport.svg" width="22" alt="steps" /></div>
+              <div class="flex-1">
+                <h5 class="text-secondary fw-bold fs-0">Worth of money</h5>
+                <p>Third-party flight booking ensures travelers get the best worth for their money. With access to a
+                  wide range of airlines and deals, these platforms enable users to find cost-effective options for
+                  unique destinations. Budget-conscious adventurers can explore more and enjoy memorable experiences
+                  without overspending.</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start mb-5">
+              <div class="bg-info me-sm-4 me-3 p-3" style="border-radius: 13px"> <img src="assets/img/steps/taxi.svg"
+                  width="22" alt="steps" /></div>
+              <div class="flex-1">
+                <h5 class="text-secondary fw-bold fs-0">Wonderful places</h5>
+                <p>Third-party flight booking opens the door to wonderful places around the world. By offering diverse
+                  airline options and routes, these platforms allow travelers to discover and visit enchanting
+                  destinations off the beaten path. From serene islands to majestic mountains, wanderers can embark on
+                  extraordinary journeys to experience the world's beauty.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex justify-content-center align-items-start">
+            <div class="card position-relative shadow" style="max-width: 370px;">
+              <div class="position-absolute z-index--1 me-10 me-xxl-0" style="right:-160px;top:-210px;"> <img
+                  src="assets/img/steps/bg.png" style="max-width:550px;" alt="shape" /></div>
+              <div class="card-body p-3"> <img class="mb-4 mt-2 rounded-2 w-100" src="assets/img/steps/booking-img.jpg"
+                  alt="booking" />
+                <div>
+                  <h5 class="fw-medium">Trip To Greece</h5>
+                  <p class="fs--1 mb-3 fw-medium">14-29 June | by Robbin joseph</p>
+                  <div class="icon-group mb-4"> <span class="btn icon-item"> <img src="assets/img/steps/leaf.svg"
+                        alt="" /></span><span class="btn icon-item"> <img src="assets/img/steps/map.svg"
+                        alt="" /></span><span class="btn icon-item"> <img src="assets/img/steps/send.svg"
+                        alt="" /></span>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center mt-n1"><img class="me-3" src="assets/img/steps/building.svg"
+                        width="18" alt="building" /><span class="fs--1 fw-medium">24 people going</span></div>
+                    <div class="show-onhover position-relative">
+                      <div
+                        class="card hideEl shadow position-absolute end-0 start-xl-50 bottom-100 translate-xl-middle-x ms-3"
+                        style="width: 260px;border-radius:18px;">
+                        <div class="card-body py-3">
+                          <div class="d-flex">
+                            <div style="margin-right: 10px"> <img class="rounded-circle"
+                                src="assets/img/steps/favorite-placeholder.png" width="50" alt="favorite" /></div>
+                            <div>
+                              <p class="fs--1 mb-1 fw-medium">Ongoing </p>
+                              <h5 class="fw-medium mb-3">Trip to rome</h5>
+                              <h6 class="fs--1 fw-medium mb-2"><span>40%</span> completed</h6>
+                              <div class="progress" style="height: 6px;">
+                                <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="25"
+                                  aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <button class="btn"> <img src="assets/img/steps/heart.svg" width="20" alt="step" /></button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+    <div class="mb-7 text-center">
+      <!-- <h5 class="text-secondary">Top Selling </h5> -->
+      <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Featured Destenations</h3>
+    </div>
+    <div class="image-div">
+      <div class="box">
+        <img src="assets/img/gallery/6349a457-group-69a.png">
+        <span>Italy</span>
+      </div>
+      <div class="box">
+        <img src="assets/img/gallery/88230ecf-group-70b.png">
+        <span>India</span>
+      </div>
+      <div class="box">
+        <img src="assets/img/gallery/b6899106-group-72c-300x241.png">
+        <span>Australia</span>
+      </div>
+      <div class="box">
+        <img src="assets/img/gallery/437bf6f2-group-71d.png">
+        <span>Maldives</span>
+      </div>
+    </div>
+
+    
+   <div class="container">
+    <h3 style="justify-content: center; display: flex; align-items: center; margin-bottom: 50px;"  >Unlocks the World's Trasures with Third Party Flight Booking! </h3>
+   <div class="row">
+    <div class="col-md-4 mb-4">
+      <figure class="snip0016">
+        <img src="assets/img/gallery/luke-southern-9yCYGgPe5Kg-unsplash.jpg" alt="sample41"/>
+        <figcaption>
+          <h2 style="color: #fff;">I think <span>nighttime</span> is dark</h2>
+          <p>So you can imagine your fears with less distraction.</p>
+          <a href="#"></a>
+        </figcaption>			
+      </figure>
+    </div>
+    <div class="col-md-4 mb-4">
+      <figure class="snip0016">
+        <img src="assets/img/gallery/b6899106-group-72c-300x241.png" alt="sample41"/>
+        <figcaption>
+          <h2 style="color: #fff;">I think <span>nighttime</span> is dark</h2>
+          <p>So you can imagine your fears with less distraction.</p>
+          <a href="#"></a>
+        </figcaption>			
+      </figure>
+    </div>
+    <div class="col-md-4 mb-4">
+      <figure class="snip0016">
+        <img src="assets/img/gallery/88230ecf-group-70b.png" alt="sample41"/>
+        <figcaption>
+          <h2 style="color: #fff;">I think <span>nighttime</span> is dark</h2>
+          <p>So you can imagine your fears with less distraction.</p>
+          <a href="#"></a>
+        </figcaption>			
+      </figure>
+    </div>
+   </div>
+    
+   
+   </div>
+
+    
+    <section class="pb-0 pb-lg-4">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0"> <img class="mb-4"
+              src="assets/img/FLY_FARE.png" width="150" alt="jadoo" />
+            <p class="fs--1 text-secondary mb-0 fw-medium">Lock air fare is the best Third Party Flight Booking website,
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0">
+            <h4 class="footer-heading-color fw-bold font-sans-serif mb-3 mb-lg-4">About</h4>
+            <ul class="list-unstyled mb-0">
+              <!-- <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none">About</a></li> -->
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none">Call now</a></li>
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none"
+                  href="tel: +1-866-217-4768">+1-866-217-4768</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0">
+            <h4 class="footer-heading-color fw-bold font-sans-serif mb-3 mb-lg-4">Links</h4>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Disclaimer</a></li>
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Privacy Policy</a></li>
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">About Us</a></li>
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Terms & Conditions</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0">
+            <h4 class="footer-heading-color fw-bold font-sans-serif mb-3 mb-lg-4">Best Deal</h4>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Fly to Your Dreams with
+                  Third Party Flight Booking</a></li>
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Elevate Your Travel
+                  Experience with Third Party Flight Booking</a></li>
+              <li class="mb-2"><a class="link-900 fs-1 fw-medium text-decoration-none" href="#!">Low fare tips!</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-5 col-12 mb-4 mb-md-6 mb-lg-0 order-lg-4 order-md-1">
+            <!-- <div class="icon-group mb-4"> <a class="text-decoration-none icon-item shadow-social" id="facebook" href="#!"><i class="fab fa-facebook-f"> </i></a><a class="text-decoration-none icon-item shadow-social" id="instagram" href="#!"><i class="fab fa-instagram"> </i></a><a class="text-decoration-none icon-item shadow-social" id="twitter" href="#!"><i class="fab fa-twitter"> </i></a></div> -->
+            <!-- <h4 class="fw-medium font-sans-serif text-secondary mb-3">Discover our app</h4>
+              <div class="d-flex align-items-center"> <a href="#!"> <img class="me-2" src="assets/img/play-store.png" alt="play store" /></a><a href="#!"> <img src="assets/img/apple-store.png" alt="apple store" /></a></div> -->
+          </div>
+        </div>
+      </div><!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+ 
+
+    <div class="py-5 text-center typewriter" >
+      
+      <p class="mb-0 text-secondary fs--1 fw-medium txt1">All rights <span class="txt2"> <a href="https://flyfare.us/index.html">flyfare.us</a></span><div class="bar"></div></p>
+      
+        <!-- <span>www.codepen.io/</span> -->
+      </div>
+      <div class="icon-group mb-4"
+        style="justify-content: center; display: flex; text-align: center; margin-top: 10px;"> <a
+          class="text-decoration-none icon-item shadow-social" id="facebook" href="#!"><i class="fab fa-facebook-f">
+          </i></a><a class="text-decoration-none icon-item shadow-social" id="instagram" href="#!"><i
+            class="fab fa-instagram"> </i></a><a class="text-decoration-none icon-item shadow-social" id="twitter"
+          href="#!"><i class="fab fa-twitter"> </i></a></div>
+    </div>
+  </main>
+  <script src="vendors/@popperjs/popper.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="vendors/is/is.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="vendors/fontawesome/all.min.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script>
+    // Function to open the modal
+    function openModal() {
+      var modal = document.getElementById('open-modal');
+      var overlay = document.getElementById('overlay');
+      modal.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+  
+    // Function to close the modal
+    function closeModal() {
+      var modal = document.getElementById('open-modal');
+      var overlay = document.getElementById('overlay');
+      modal.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+    function callNow() {
+    // Replace '123456789' with your actual phone number
+    window.location.href = 'tel:+1-866-217-4768';
+  }
+  </script>
+  
+  
+  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Volkhov:wght@700&amp;display=swap"
+    rel="stylesheet">
+</body>
+
+</html>
